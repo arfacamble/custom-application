@@ -24,7 +24,9 @@ export default {
   methods: {
     callApi (data) {
       const { companyName, passkey } = data
-      fetch(`https://job-application-api.herokuapp.com/applications/${companyName}?key=${passkey}`)
+      // const dev_root = "http://localhost:3000"
+      const prod_root = "https://job-application-api.herokuapp.com"
+      fetch(`${prod_root}/applications/${companyName}?key=${passkey}`)
         .then(response => response.json())
         .then(apiData => console.log(apiData))
     }
