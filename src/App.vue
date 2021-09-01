@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen flex justify-center items-center">
-    <SignIn v-if="!applicationData" @sign-in-submit="callApi"/>
     <Application v-if="applicationData"/>
+    <SignIn v-if="!applicationData" @sign-in-submit="callApi"/>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
       const prod_root = "https://job-application-api.herokuapp.com"
       fetch(`${prod_root}/applications/${companyName}?key=${passkey}`)
         .then(response => response.json())
-        .then(apiData => console.log(apiData))
+        .then(apiData => this.applicationData = apiData)
     }
   }
 }
