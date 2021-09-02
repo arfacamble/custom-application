@@ -64,8 +64,6 @@ import HobbyCard from './components/small/HobbyCard'
 import ProjectCard from './components/small/ProjectCard'
 import ResponseCard from './components/small/ResponseCard'
 
-import applicationData from './data/application.json'
-
 export default {
   components: {
     Banner,
@@ -75,6 +73,25 @@ export default {
     HobbyCard,
     ProjectCard,
     ResponseCard
+  },
+
+  props: {
+    applicationData: { required: true, type: Object }
+  },
+
+  data() {
+    return {
+      logoUrl: null,
+      jobTitle: null,
+      companyName: null,
+      navTabs: null,
+      cover: null,
+      experience: null,
+      education: null,
+      hobbies: null,
+      projects: null,
+      values: null
+    }
   },
 
   beforeCreate() {
@@ -88,8 +105,21 @@ export default {
     head.insertAdjacentHTML('beforeend', `<link href="${fontLink}" rel="stylesheet">`)
   },
 
-  data () {
-    return applicationData
+  beforeMount() {
+    console.log('------------------------')
+    console.log(this.applicationData)
+    console.log(typeof this.applicationData)
+    const appDataKeys = Object.keys(this.applicationData)
+    appDataKeys.forEach((key) => {
+      this[key] = this.applicationData[key]
+    })
+    let nav_index = 0
+    this.navTabs.forEach((nav) => {
+      nav.id == 'cover' ? nav.current = true : nav.current = false
+      this.navTabs[nav_index] = nav
+      nav_index += 1
+    })
+    console.log(this.$data)
   },
 
   methods: {
