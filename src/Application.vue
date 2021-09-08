@@ -9,7 +9,7 @@
             <h2 class="text-xl font-headers underline ml-8 mb-2 text-background">{{contentTitle}}</h2>
             <div class="flex-grow overflow-scroll">
               <Cover v-if="navTabs.cover.current" :text="cover" />
-              <Cards v-if="navTabs.experience.current" :cards="experience" />
+              <Cards v-if="navTabs.experience.current" :cards="experienceCards" />
               <Cards v-if="navTabs.education.current" :cards="education" />
               <div v-if="navTabs.hobbies.current">
                 <HobbyCard v-for="hobby in hobbies" :key="hobby.id"
@@ -90,7 +90,8 @@ export default {
     experience: { required: true, type: Array },
     hobbies: { required: true, type: Array },
     projects: { required: true, type: Array },
-    values: { required: true, type: Array }
+    values: { required: true, type: Array },
+    competencies: { required: true, type: Array }
   },
 
   data () {
@@ -142,34 +143,14 @@ export default {
     }
   },
 
-  beforeCreate() {
-    document.documentElement.style.setProperty('--primary-color', '#0077CC')
-    document.documentElement.style.setProperty('--secondary-color', '#234796')
-    document.documentElement.style.setProperty('--background-color', '#BCBBBB')
-    document.documentElement.style.setProperty('--headers-font', "Poppins")
-    document.documentElement.style.setProperty('--body-font', "Roboto")
-    const fontLink = 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'
-    const head = document.querySelector('head')
-    head.insertAdjacentHTML('beforeend', `<link href="${fontLink}" rel="stylesheet">`)
-  },
-
   beforeMount() {
-    // console.log('------------------------')
-    // console.log(this.applicationData)
-    // console.log(typeof this.applicationData)
-    // const appDataKeys = Object.keys(this.applicationData)
-    // console.log(appDataKeys)
-    // appDataKeys.forEach((key) => {
-    //   console.log('--------------------')
-    //   console.log('key: ' + key)
-    //   console.log('value: ' + this.applicationData[key])
-    //   console.log('value in $data ' + this[key])
-    //   // this.$set(this.$data, key, this.applicationData[key])
-    //   // this.$data[key] = this.applicationData[key]
-    //   console.log('value in $data ' + this[key])
-    //   // console.log('this: ' + this)
-    //   console.log('this.$data: ' + this.$data)
-    // })
+    document.documentElement.style.setProperty('--primary-color', this.primaryColor)
+    document.documentElement.style.setProperty('--secondary-color', this.secondaryColor)
+    document.documentElement.style.setProperty('--background-color', this.backgroundColor)
+    document.documentElement.style.setProperty('--headers-font', this.headersFont)
+    document.documentElement.style.setProperty('--body-font', this.bodyFont)
+    const head = document.querySelector('head')
+    head.insertAdjacentHTML('beforeend', `<link href="${this.fontLink}" rel="stylesheet">`)
   },
 
   methods: {
@@ -185,6 +166,16 @@ export default {
   computed: {
     contentTitle () {
       return Object.values(this.navTabs).filter(tab => tab.current)[0].title
+    },
+
+    experienceCards () {
+      const cards = []
+      this.experience.forEach((exp) => {
+        exp.collapsible = true
+        exp.enlargedOnRender = false
+        cards.push(exp)
+      })
+      return cards
     }
   }
 }

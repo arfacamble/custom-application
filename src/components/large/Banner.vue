@@ -1,6 +1,6 @@
 <template>
   <div class="h-1/5 md:h-1/4 bg-primary flex justify-center">
-    <div class="h-full w-full sm:w-5/6 md:w-3/4 lg:w-3/5 flex relative">
+    <div class="h-full w-full sm:w-5/6 md:w-3/4 lg:w-3/5 flex justify-center relative">
       <div class="h-full f-grow flex flex-col px-4">
         <div class="h-full f-grow flex flex-col justify-evenly">
           <h1 class="mt-2 sm:mt-2 md:mt-4 text-xl md:text-3xl font-headers">Arthur Campbell's</h1>
