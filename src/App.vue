@@ -52,7 +52,7 @@ export default {
       const { companyName, passkey } = data
       const dev_root = "http://localhost:3000"
       const prod_root = "https://job-application-api.herokuapp.com"
-      const url = `${dev_root}/applications/${companyName}?key=${passkey}`
+      const url = `${prod_root}/applications/${companyName}?key=${passkey}`
       const ringRing = async (url) => {
         const response = await fetch(url)
         const apiData = await response.json()
