@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen">
+  <div class="h-screen w-full">
     <Banner :logoUrl="logoUrl" :jobTitle="jobTitle" :companyName="companyName" />
     <div class="flex bg-secondary h-4/5 md:h-3/4 justify-center">
       <div class="flex h-full items-center w-full sm:w-7/8 md:w-4/5 lg:w-3/4">
