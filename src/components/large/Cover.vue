@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="para in text" :key="para.split(' ')[0]" class="font-body text-background mb-2">{{para}}</div>
+    <div v-for="para in text" :key="para.text.split(' ')[0]" class="font-body text-background mb-2">{{para.text}}</div>
   </div>
 </template>
 

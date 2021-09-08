@@ -76,21 +76,69 @@ export default {
   },
 
   props: {
-    applicationData: { required: true, type: Object }
+    companyName: { required: true, type: String },
+    primaryColor: { required: true, type: String },
+    backgroundColor: { required: true, type: String },
+    secondaryColor: { required: true, type: String },
+    headersFont: { required: true, type: String },
+    bodyFont: { required: true, type: String },
+    fontLink: { required: true, type: String },
+    jobTitle: { required: true, type: String },
+    logoUrl: { required: true, type: String },
+    cover: { required: true, type: Array },
+    education: { required: true, type: Array },
+    experience: { required: true, type: Array },
+    hobbies: { required: true, type: Array },
+    projects: { required: true, type: Array },
+    values: { required: true, type: Array }
   },
 
-  data() {
+  data () {
     return {
-      logoUrl: null,
-      jobTitle: null,
-      companyName: null,
-      navTabs: null,
-      cover: null,
-      experience: null,
-      education: null,
-      hobbies: null,
-      projects: null,
-      values: null
+      navTabs: {
+        "cover": {
+          "id": "cover",
+          "title": "Cover",
+          "iconName": "feed",
+          "current": true
+        },
+        "values": {
+          "id": "values",
+          "title": "Values",
+          "iconName": "question_answer",
+          "current": false
+        },
+        "experience": {
+          "id": "experience",
+          "title": "Experience",
+          "iconName": "work_outline",
+          "current": false
+        },
+        "projects": {
+          "id": "projects",
+          "title": "Projects",
+          "iconName": "precision_manufacturing",
+          "current": false
+        },
+        "competencies": {
+          "id": "competencies",
+          "title": "Competencies",
+          "iconName": "code",
+          "current": false
+        },
+        "education": {
+          "id": "education",
+          "title": "Education",
+          "iconName": "history_edu",
+          "current": false
+        },
+        "hobbies": {
+          "id": "hobbies",
+          "title": "Hobbies",
+          "iconName": "fingerprint",
+          "current": false
+        },
+      }
     }
   },
 
@@ -106,20 +154,22 @@ export default {
   },
 
   beforeMount() {
-    console.log('------------------------')
-    console.log(this.applicationData)
-    console.log(typeof this.applicationData)
-    const appDataKeys = Object.keys(this.applicationData)
-    appDataKeys.forEach((key) => {
-      this[key] = this.applicationData[key]
-    })
-    let nav_index = 0
-    this.navTabs.forEach((nav) => {
-      nav.id == 'cover' ? nav.current = true : nav.current = false
-      this.navTabs[nav_index] = nav
-      nav_index += 1
-    })
-    console.log(this.$data)
+    // console.log('------------------------')
+    // console.log(this.applicationData)
+    // console.log(typeof this.applicationData)
+    // const appDataKeys = Object.keys(this.applicationData)
+    // console.log(appDataKeys)
+    // appDataKeys.forEach((key) => {
+    //   console.log('--------------------')
+    //   console.log('key: ' + key)
+    //   console.log('value: ' + this.applicationData[key])
+    //   console.log('value in $data ' + this[key])
+    //   // this.$set(this.$data, key, this.applicationData[key])
+    //   // this.$data[key] = this.applicationData[key]
+    //   console.log('value in $data ' + this[key])
+    //   // console.log('this: ' + this)
+    //   console.log('this.$data: ' + this.$data)
+    // })
   },
 
   methods: {
