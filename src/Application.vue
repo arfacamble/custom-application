@@ -10,7 +10,7 @@
             <div class="flex-grow overflow-scroll">
               <Cover v-if="navTabs.cover.current" :text="cover" />
               <Cards v-if="navTabs.experience.current" :cards="experienceCards" />
-              <Cards v-if="navTabs.education.current" :cards="education" />
+              <Cards v-if="navTabs.education.current" :cards="educationCards" />
               <div v-if="navTabs.hobbies.current">
                 <HobbyCard v-for="hobby in hobbies" :key="hobby.id"
                   :imageUrl="hobby.imageUrl"
@@ -174,6 +174,16 @@ export default {
         exp.collapsible = true
         exp.enlargedOnRender = false
         cards.push(exp)
+      })
+      return cards
+    },
+
+    educationCards () {
+      const cards = []
+      this.education.forEach((edu) => {
+        edu.collapsible = false
+        edu.enlargedOnRender = true
+        cards.push(edu)
       })
       return cards
     }

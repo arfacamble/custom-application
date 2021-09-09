@@ -13,7 +13,7 @@
         @click="toggleMoreInfo"
       />
     </div>
-    <p class="font-body text-background mt-2">{{text}}</p>
+    <p v-if="text" class="font-body text-background mt-2">{{text}}</p>
     <div v-if="enlarged">
       <ul class="list-disc pl-6">
         <li class="font-body text-background font-light text-sm" v-for="point in bulletpoints" :key="point.split(' ')[0]">{{point}}</li>
