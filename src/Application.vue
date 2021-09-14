@@ -37,7 +37,7 @@
                 />
               </div>
               <div v-if="navTabs.competencies.current">
-                <h3 class="font-body text-sm italic ml-4 text-background">The list below is not exhaustive, but references only those competencies listed in the job description</h3>
+                <h3 class="font-body text-sm italic ml-4 text-background">The list below is not exhaustive, but references only those competencies relevant to the job description</h3>
                 <ResponseCard v-for="competency in competencies"
                   :key="competency.id"
                   :id="competency.id"
