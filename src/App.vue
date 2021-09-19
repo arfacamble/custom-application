@@ -25,6 +25,11 @@
       :competencies="applicationData.competencies"
     />
     <SignIn v-if="!applicationData" @sign-in-submit="callApi"/>
+    <div v-if="callingApi" class="w-4/6 md:w-2/4 lg:w-1/3 border-gray-400 border rounded-md p-4 my-4 flex flex-col items-center">
+      <PulseLoader class="my-2" />
+      <p class="text-lg text-center">Calling API</p>
+      <p class="italic text-sm text-center">Backend hosted on heroku, waking dynos</p>
+    </div>
   </div>
 </template>
 
@@ -32,18 +37,21 @@
 import Application from './Application'
 import SignIn from './components/small/SignIn'
 import WarningError from './components/small/WarningError'
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
   components: {
     Application,
     WarningError,
-    SignIn
+    SignIn,
+    PulseLoader
   },
 
   data () {
     return {
       applicationData: null,
-      warning: null
+      warning: null,
+      callingApi: false
     }
   },
 
@@ -54,6 +62,7 @@ export default {
       const prod_root = "https://job-application-api.herokuapp.com"
       const url = `${prod_root}/applications/${companyName}?key=${passkey}`
       const ringRing = async (url) => {
+        this.callingApi = true
         const response = await fetch(url)
         const apiData = await response.json()
         if (apiData.failure) {
@@ -65,6 +74,7 @@ export default {
           // })
           this.applicationData = apiData
         }
+        this.callingApi = false
       }
       ringRing(url)
     }
